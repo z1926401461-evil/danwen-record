@@ -1,12 +1,19 @@
-name = "danwen-record"
+name = "temperature-app"
 main = "src/index.js"
-compatibility_date = "2026-11-17"
+compatibility_date = "2026-11-07"
 workers_dev = true
 
-# 自定义域（danwen 不带 wd，避开后端 API 域名）
+# 合并后：wd 与 danwen 两个域名都指向同一个 Worker（前后端一体）
 routes = [
+  { pattern = "wd.10704002.xyz", custom_domain = true },
   { pattern = "danwen.10704002.xyz", custom_domain = true }
 ]
+
+# D1 后端数据库（还原线上原绑定，database_id 一字不改）
+[[d1_databases]]
+binding = "DB"
+database_name = "temperature-app-db"
+database_id = "04003cff-41d4-4d08-b969-7b64223a404c"
 
 [assets]
 directory = "./public"
