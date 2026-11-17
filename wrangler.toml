@@ -3,6 +3,11 @@ main = "src/index.js"
 compatibility_date = "2026-11-17"
 workers_dev = true
 
+# 自定义域（danwen 不带 wd，避开后端 API 域名）
+routes = [
+  { pattern = "danwen.10704002.xyz", custom_domain = true }
+]
+
 [assets]
 directory = "./public"
 binding = "ASSETS"
