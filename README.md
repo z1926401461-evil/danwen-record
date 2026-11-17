@@ -17,7 +17,17 @@ cp /c/Users/zzh/Desktop/temapp/temperature-app/public/index.html public/index.ht
 wrangler deploy
 ```
 
-或 `git add -A && git commit -m "update" && git push`，GitHub Actions 会自动部署（需在仓库 Secrets 配 `CLOUDFLARE_API_TOKEN` 与 `CLOUDFLARE_ACCOUNT_ID`）。
+## GitHub Actions 自动部署（可选，需一次性开启）
+
+仓库根目录的 `github-actions-deploy.yml` 是 Actions 配置模板。因为 GitHub 要求写入 `.github/workflows/` 的 token 带 `workflows` 权限，这里没替你直接放进去。启用步骤：
+
+1. 在 GitHub 网页打开本仓库 → Settings → Secrets and variables → Actions → New repository secret，加两个：
+   - `CLOUDFLARE_API_TOKEN`：Cloudflare API Token（权限 Workers Script:Edit + Account:Read）
+   - `CLOUDFLARE_ACCOUNT_ID`：`aa39df8086721d5a4465b21e85a16ff8`
+2. 把 `github-actions-deploy.yml` 的内容新建为文件 `.github/workflows/deploy.yml`。
+3. 以后 `git push` 到 main 就会自动部署。
+
+不启用也没关系：本地 `wrangler deploy` 一样能更新线上。
 
 ## 说明
 
